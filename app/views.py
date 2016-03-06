@@ -30,7 +30,7 @@ def user_lookup(request):
         if serializer.is_valid():
             serializer.save()
             out = { 'user_uuid': serializer.data['user_uuid'] }
-            return Response(out, status=status.HTTP_201_CREATED), headers={'Cache-Control': 'no-cache', 'Access-Control-Allow-Origin': '*'}
+            return Response(out, status=status.HTTP_201_CREATED, headers={'Cache-Control': 'no-cache', 'Access-Control-Allow-Origin': '*'})
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST))
 
 @api_view(['GET','POST'])
