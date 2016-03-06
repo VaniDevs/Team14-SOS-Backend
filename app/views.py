@@ -30,8 +30,8 @@ def user_lookup(request):
         if serializer.is_valid():
             serializer.save()
             out = { 'user_uuid': serializer.data['user_uuid'] }
-            return Response(out, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(out, status=status.HTTP_201_CREATED), headers={'Cache-Control': 'no-cache', 'Access-Control-Allow-Origin': '*'}
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST))
 
 @api_view(['GET','POST'])
 def user_detail(request, pk):
@@ -46,7 +46,7 @@ def user_detail(request, pk):
         serializer = UserSerializerDetailPOST(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.data, status=status.HTTP_201_CREATED, headers={'Cache-Control': 'no-cache', 'Access-Control-Allow-Origin': '*'})
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET','POST'])
@@ -60,7 +60,7 @@ def sos_lookup(request):
         if serializer.is_valid():
             serializer.save()
             out = { 'sos_uuid': serializer.data['sos_uuid'] }
-            return Response(out, status=status.HTTP_201_CREATED)
+            return Response(out, status=status.HTTP_201_CREATED, headers={'Cache-Control': 'no-cache', 'Access-Control-Allow-Origin': '*'})
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET','POST'])
@@ -91,7 +91,7 @@ def sos_detail(request,pk):
             tmp_list.append(request_list[0])
             tmp.location_list = tmp_list
             tmp.save(update_fields=['location_list'])
-            return Response(status=status.HTTP_200_OK)
+            return Response(status=status.HTTP_200_OK, headers={'Cache-Control': 'no-cache', 'Access-Control-Allow-Origin': '*'})
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET','POST'])
@@ -113,7 +113,7 @@ def sos_status(request,pk):
                 return Response(status=status.HTTP_400_BAD_REQUEST)
             tmp.status = request.data['status'] 
             tmp.save(update_fields=['status'])
-            return Response(status=status.HTTP_200_OK)
+            return Response(status=status.HTTP_200_OK, headers={'Cache-Control': 'no-cache', 'Access-Control-Allow-Origin': '*'})
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET','POST'])
@@ -141,7 +141,7 @@ def sos_note(request,pk):
             tmp_list.append(request_list[0])
             tmp.note_list = tmp_list
             tmp.save(update_fields=['note_list'])
-            return Response(status=status.HTTP_200_OK)
+            return Response(status=status.HTTP_200_OK, headers={'Cache-Control': 'no-cache', 'Access-Control-Allow-Origin': '*'})
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET','POST'])
@@ -169,7 +169,7 @@ def sos_image(request,pk):
             tmp_list.append(request_list[0])
             tmp.image_list = tmp_list
             tmp.save(update_fields=['image_list'])
-            return Response(status=status.HTTP_200_OK)
+            return Response(status=status.HTTP_200_OK, headers={'Cache-Control': 'no-cache', 'Access-Control-Allow-Origin': '*'})
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
