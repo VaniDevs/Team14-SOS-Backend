@@ -23,6 +23,7 @@ class sos(models.Model):
     user_uuid = models.ForeignKey(user,related_name="user", null=True)
     location_list = models.TextField(null=True,blank=True)
     note_list = models.TextField(null=True,blank=True)
+    image_list = models.TextField(null=True,blank=True)
     #created = models.DateTimeField(null=True,blank=True)
     status = models.IntegerField(default=1)
 

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from app.serializers import UserSerializerGET, UserSerializerPOST, UserSerializerDetailGET, UserSerializerDetailPOST, SosSerializerGET, SosSerializerPOST, SosSerializerDetailGET, SosSerializerDetailPOST, SosSerializerStatusGET, SosSerializerStatusPOST, SosSerializerNoteGET, SosSerializerNotePOST
+from app.serializers import UserSerializerGET, UserSerializerPOST, UserSerializerDetailGET, UserSerializerDetailPOST, SosSerializerGET, SosSerializerPOST, SosSerializerDetailGET, SosSerializerDetailPOST, SosSerializerStatusGET, SosSerializerStatusPOST, SosSerializerNoteGET, SosSerializerNotePOST, SosSerializerImageGET, SosSerializerImagePOST
 
 from app.models import user, sos 
 from rest_framework import viewsets, status
@@ -138,6 +138,34 @@ def sos_note(request,pk):
             tmp_list.append(request_list[0])
             tmp.note_list = tmp_list
             tmp.save(update_fields=['note_list'])
+            return Response(status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET','POST'])
+def sos_image(request,pk):
+    if request.method == 'GET':
+        try:
+            sos_list = sos.objects.get(sos_uuid=pk)
+            serializer = SosSerializerImageGET(sos_list)
+        except:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.data,headers={'Cache-Control': 'no-cache', 'Access-Control-Allow-Origin': '*'})
+    elif request.method == 'POST':
+        serializer = SosSerializerImagePOST(data=request.data)
+        if serializer.is_valid():
+            #serializer.save()
+            tmp = sos.objects.get(sos_uuid=pk)
+            try:
+                tmp_list = ast.literal_eval(tmp.image_list)
+            except:
+                tmp_list = [] 
+            try:
+                request_list = ast.literal_eval(request.data['image_list'])
+            except:
+                request_list = request.data['image_list']
+            tmp_list.append(request_list[0])
+            tmp.image_list = tmp_list
+            tmp.save(update_fields=['image_list'])
             return Response(status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

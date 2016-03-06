@@ -68,3 +68,15 @@ class SosSerializerNotePOST(serializers.ModelSerializer):
         model = sos 
         fields = ('note_list',)
  
+class SosSerializerImageGET(serializers.ModelSerializer):
+
+    class Meta:
+        model = sos 
+        fields = ('image_list',)
+
+class SosSerializerImagePOST(serializers.ModelSerializer):
+
+    class Meta:
+        model = sos 
+        fields = ('image_list',)
+ 

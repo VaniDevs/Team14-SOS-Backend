@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^sos/(?P<pk>[-\w]+)$', views.sos_detail),
     url(r'^sos/(?P<pk>[-\w]+)/status/$', views.sos_status),
     url(r'^sos/(?P<pk>[-\w]+)/note/$', views.sos_note),
+    url(r'^sos/(?P<pk>[-\w]+)/image/$', views.sos_image),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^admin/', include(admin.site.urls)),
 ]
