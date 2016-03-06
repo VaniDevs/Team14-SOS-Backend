@@ -55,4 +55,16 @@ class SosSerializerStatusPOST(serializers.ModelSerializer):
     class Meta:
         model = sos 
         fields = ('status',)
-  
+ 
+class SosSerializerNoteGET(serializers.ModelSerializer):
+
+    class Meta:
+        model = sos 
+        fields = ('note_list',)
+
+class SosSerializerNotePOST(serializers.ModelSerializer):
+
+    class Meta:
+        model = sos 
+        fields = ('note_list',)
+ 

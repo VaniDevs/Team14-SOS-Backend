@@ -22,6 +22,7 @@ class sos(models.Model):
     sos_uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user_uuid = models.ForeignKey(user,related_name="user", null=True)
     location_list = models.TextField(null=True,blank=True)
+    note_list = models.TextField(null=True,blank=True)
     #created = models.DateTimeField(null=True,blank=True)
     status = models.IntegerField(default=1)
 

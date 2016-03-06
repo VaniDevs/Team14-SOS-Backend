@@ -20,6 +20,7 @@ urlpatterns = [
     url(r'^sos/$', views.sos_lookup),
     url(r'^sos/(?P<pk>[-\w]+)$', views.sos_detail),
     url(r'^sos/(?P<pk>[-\w]+)/status/$', views.sos_status),
+    url(r'^sos/(?P<pk>[-\w]+)/note/$', views.sos_note),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^admin/', include(admin.site.urls)),
 ]
