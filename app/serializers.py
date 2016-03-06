@@ -35,7 +35,7 @@ class SosSerializerPOST(serializers.ModelSerializer):
 class SosSerializerDetailGET(serializers.ModelSerializer):
     class Meta:
         model = sos 
-        fields = ('sos_uuid', 'user_uuid', 'location_list', 'status')
+        fields = ('sos_uuid', 'user_uuid', 'location_list', 'note_list', 'status')
 
  
 class SosSerializerDetailPOST(serializers.ModelSerializer):
