@@ -84,8 +84,10 @@ def sos_detail(request,pk):
             try:
                 request_list = ast.literal_eval(request.data['location_list'])
             except:
-                request_list = request.data['location_list']
-                #return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                try:
+                    request_list = request.data['location_list']
+                except:
+                    return Response(status=status.HTTP_400_BAD_REQUEST)
             tmp_list.append(request_list[0])
             tmp.location_list = tmp_list
             tmp.save(update_fields=['location_list'])
