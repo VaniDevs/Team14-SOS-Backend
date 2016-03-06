@@ -7,6 +7,7 @@ Using Django, django-rest-framework.
 ##  APIs
 host/user/
 >{GET} Retrieve list of users in database.
+
 >{POST} Create new user.
 
 host/user/{user_uuid}
@@ -14,24 +15,29 @@ host/user/{user_uuid}
 
 host/sos/
 >{GET} Retrieve list of SOS requests in database.
+
 >{POST} Create new SOS request.
 
 host/sos/{sos_uuid}
 >{GET} Retrieve detail view of {sos_uuid} SOS request.
+
 >{POST} Update current location of SOS request.
 
 host/sos/{sos_uuid}/status
 >{GET} Retrieve status of {sos_uuid} SOS request.
+
 >{POST} Update status of {sos_uuid} SOS request.
 
 (beta)
 host/sos/{sos_uuid}/note
 >{GET} Retrieve notes from {sos_uuid} SOS request.
+
 >{POST} Add notes to {sos_uuid} SOS request.
 
 (beta)
 host/sos/{sos_uuid}/image
 >{GET} Retrieve images from {sos_uuid} SOS request.
+
 >{POST} Add images to {sos_uuid} SOS request.
 
 
